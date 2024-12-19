@@ -65,15 +65,6 @@ sd(real_estate_nyc$acre_lot)
 
 ## Histograms of the variables
 
-```{r}
-
-# Histogram of Y variable Histogram of X variable made in Tableau
-
-# Histogram of additional variables if needed
-
-```
-
-
 ![Figure 1: Histogram of Prices in US DOllars](Figure1.png)
 
 ![Figure 2: Histogram of Property Size in Acres](Figure2.png)
