@@ -141,8 +141,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#summary-statistices-of-the-variables" id="toc-summary-statistices-of-the-variables" class="nav-link" data-scroll-target="#summary-statistices-of-the-variables">Summary Statistices of the variables</a></li>
+  <li><a href="#histograms-of-the-variables" id="toc-histograms-of-the-variables" class="nav-link" data-scroll-target="#histograms-of-the-variables">Histograms of the variables</a></li>
+  <li><a href="#the-relationship-between-the-variables" id="toc-the-relationship-between-the-variables" class="nav-link" data-scroll-target="#the-relationship-between-the-variables">The Relationship between the variables</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -166,16 +177,496 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this project, I am analyzing the relationship between the amount of the acres of real estate in New York City to the cost of the property. The common relationship between those two factors of most real estate in the US and around the world is positive where the larger the real estate property the higher the price. However, there may be additional variables and factors that may alter the common positive relationship. The focus of this project is to only show whether or not the prices of real estate prices increases with property size while keeping all other variables/factors as controls.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code># Downloading packages -------------------------------------------------------
+- Downloading readr from CRAN ...               OK [829.4 Kb in 0.95s]
+- Downloading clipr from CRAN ...               OK [49.1 Kb in 0.32s]
+- Downloading crayon from CRAN ...              OK [158.5 Kb in 0.75s]
+- Downloading hms from CRAN ...                 OK [94.2 Kb in 0.54s]
+- Downloading pkgconfig from CRAN ...           OK [17.1 Kb in 0.53s]
+- Downloading vctrs from CRAN ...               OK [1.2 Mb in 0.4s]
+- Downloading tibble from CRAN ...              OK [656 Kb in 0.56s]
+- Downloading fansi from CRAN ...               OK [299.4 Kb in 0.67s]
+- Downloading magrittr from CRAN ...            OK [215.3 Kb in 0.35s]
+- Downloading pillar from CRAN ...              OK [410.2 Kb in 0.91s]
+- Downloading utf8 from CRAN ...                OK [143.4 Kb in 0.54s]
+- Downloading vroom from CRAN ...               OK [924.2 Kb in 0.34s]
+- Downloading bit64 from CRAN ...               OK [470.6 Kb in 0.57s]
+- Downloading bit from CRAN ...                 OK [1.1 Mb in 0.58s]
+- Downloading tidyselect from CRAN ...          OK [216.9 Kb in 0.59s]
+- Downloading withr from CRAN ...               OK [211.6 Kb in 0.37s]
+- Downloading tzdb from CRAN ...                OK [629.3 Kb in 0.34s]
+- Downloading cpp11 from CRAN ...               OK [281.8 Kb in 0.55s]
+- Downloading progress from CRAN ...            OK [82.6 Kb in 0.31s]
+- Downloading prettyunits from CRAN ...         OK [151.5 Kb in 0.32s]
+Successfully downloaded 20 packages in 13 seconds.
+
+The following package(s) will be installed:
+- bit         [4.5.0.1]
+- bit64       [4.5.2]
+- clipr       [0.8.0]
+- cpp11       [0.5.1]
+- crayon      [1.5.3]
+- fansi       [1.0.6]
+- hms         [1.1.3]
+- magrittr    [2.0.3]
+- pillar      [1.10.0]
+- pkgconfig   [2.0.3]
+- prettyunits [1.2.0]
+- progress    [1.2.3]
+- readr       [2.1.5]
+- tibble      [3.2.1]
+- tidyselect  [1.2.1]
+- tzdb        [0.4.0]
+- utf8        [1.2.4]
+- vctrs       [0.6.5]
+- vroom       [1.6.5]
+- withr       [3.0.2]
+These packages will be installed into "~/work/nyc-real-est-analysis/nyc-real-est-analysis/renv/library/R-4.2/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing clipr ...                          OK [installed binary and cached in 0.2s]
+- Installing crayon ...                         OK [installed binary and cached in 0.21s]
+- Installing pkgconfig ...                      OK [installed binary and cached in 0.2s]
+- Installing vctrs ...                          OK [installed binary and cached in 0.36s]
+- Installing hms ...                            OK [installed binary and cached in 0.34s]
+- Installing fansi ...                          OK [installed binary and cached in 0.21s]
+- Installing magrittr ...                       OK [installed binary and cached in 0.21s]
+- Installing utf8 ...                           OK [installed binary and cached in 0.22s]
+- Installing pillar ...                         OK [installed binary and cached in 0.42s]
+- Installing tibble ...                         OK [installed binary and cached in 0.48s]
+- Installing bit ...                            OK [installed binary and cached in 0.22s]
+- Installing bit64 ...                          OK [installed binary and cached in 0.23s]
+- Installing withr ...                          OK [installed binary and cached in 0.2s]
+- Installing tidyselect ...                     OK [installed binary and cached in 0.33s]
+- Installing cpp11 ...                          OK [installed binary and cached in 0.21s]
+- Installing tzdb ...                           OK [installed binary and cached in 0.24s]
+- Installing prettyunits ...                    OK [installed binary and cached in 0.2s]
+- Installing progress ...                       OK [installed binary and cached in 0.34s]
+- Installing vroom ...                          OK [installed binary and cached in 0.57s]
+- Installing readr ...                          OK [installed binary and cached in 0.52s]
+Successfully installed 20 packages in 6.5 seconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Downloading packages -------------------------------------------------------
+- Downloading tidyverse from CRAN ...           OK [415.4 Kb in 0.33s]
+- Downloading broom from CRAN ...               OK [1.8 Mb in 0.6s]
+- Downloading backports from CRAN ...           OK [111.3 Kb in 0.75s]
+- Downloading dplyr from CRAN ...               OK [1.4 Mb in 0.68s]
+- Downloading generics from CRAN ...            OK [69.9 Kb in 0.32s]
+- Downloading purrr from CRAN ...               OK [471.9 Kb in 0.56s]
+- Downloading stringr from CRAN ...             OK [296.5 Kb in 0.56s]
+- Downloading stringi from CRAN ...             OK [3.1 Mb in 1.1s]
+- Downloading tidyr from CRAN ...               OK [1.1 Mb in 0.95s]
+- Downloading conflicted from CRAN ...          OK [53.5 Kb in 0.32s]
+- Downloading dbplyr from CRAN ...              OK [1.2 Mb in 0.36s]
+- Downloading blob from CRAN ...                OK [45 Kb in 0.55s]
+- Downloading DBI from CRAN ...                 OK [860.9 Kb in 0.94s]
+- Downloading dtplyr from CRAN ...              OK [344.9 Kb in 0.33s]
+- Downloading data.table from CRAN ...          OK [2.3 Mb in 0.59s]
+- Downloading forcats from CRAN ...             OK [409.8 Kb in 0.33s]
+- Downloading ggplot2 from CRAN ...             OK [4.7 Mb in 0.6s]
+- Downloading gtable from CRAN ...              OK [213 Kb in 0.56s]
+- Downloading isoband from CRAN ...             OK [1.6 Mb in 0.65s]
+- Downloading scales from CRAN ...              OK [682.7 Kb in 0.66s]
+- Downloading farver from CRAN ...              OK [1.4 Mb in 0.58s]
+- Downloading labeling from CRAN ...            OK [57.8 Kb in 0.57s]
+- Downloading munsell from CRAN ...             OK [235.8 Kb in 0.55s]
+- Downloading colorspace from CRAN ...          OK [2.5 Mb in 0.98s]
+- Downloading RColorBrewer from CRAN ...        OK [51.8 Kb in 0.34s]
+- Downloading viridisLite from CRAN ...         OK [1.2 Mb in 0.72s]
+- Downloading googledrive from CRAN ...         OK [1.8 Mb in 0.37s]
+- Downloading gargle from CRAN ...              OK [741.7 Kb in 0.34s]
+- Downloading httr from CRAN ...                OK [454.2 Kb in 0.34s]
+- Downloading curl from CRAN ...                OK [757.2 Kb in 0.89s]
+- Downloading openssl from CRAN ...             OK [1.2 Mb in 0.94s]
+- Downloading askpass from CRAN ...             OK [21.1 Kb in 0.57s]
+- Downloading sys from CRAN ...                 OK [38.6 Kb in 0.63s]
+- Downloading uuid from CRAN ...                OK [47 Kb in 0.66s]
+- Downloading googlesheets4 from CRAN ...       OK [493.8 Kb in 0.44s]
+- Downloading cellranger from CRAN ...          OK [98.3 Kb in 0.31s]
+- Downloading rematch from CRAN ...             OK [15.1 Kb in 0.41s]
+- Downloading ids from CRAN ...                 OK [117.5 Kb in 0.31s]
+- Downloading rematch2 from CRAN ...            OK [43.2 Kb in 0.3s]
+- Downloading haven from CRAN ...               OK [376.1 Kb in 0.33s]
+- Downloading lubridate from CRAN ...           OK [941.1 Kb in 0.62s]
+- Downloading timechange from CRAN ...          OK [169.2 Kb in 0.57s]
+- Downloading modelr from CRAN ...              OK [194.9 Kb in 0.56s]
+- Downloading ragg from CRAN ...                OK [598.5 Kb in 0.35s]
+- Downloading systemfonts from CRAN ...         OK [259.6 Kb in 0.36s]
+- Downloading textshaping from CRAN ...         OK [122.8 Kb in 0.35s]
+- Downloading readxl from CRAN ...              OK [847.1 Kb in 0.34s]
+- Downloading reprex from CRAN ...              OK [480.7 Kb in 0.83s]
+- Downloading callr from CRAN ...               OK [423.8 Kb in 0.57s]
+- Downloading processx from CRAN ...            OK [425.7 Kb in 0.9s]
+- Downloading ps from CRAN ...                  OK [456.9 Kb in 0.88s]
+- Downloading rstudioapi from CRAN ...          OK [299 Kb in 0.74s]
+- Downloading rvest from CRAN ...               OK [286.8 Kb in 0.74s]
+- Downloading selectr from CRAN ...             OK [477.1 Kb in 0.33s]
+- Downloading xml2 from CRAN ...                OK [265.2 Kb in 0.55s]
+Successfully downloaded 55 packages in 38 seconds.
+
+The following package(s) will be installed:
+- askpass       [1.2.1]
+- backports     [1.5.0]
+- blob          [1.2.4]
+- broom         [1.0.7]
+- callr         [3.7.6]
+- cellranger    [1.1.0]
+- colorspace    [2.1-1]
+- conflicted    [1.2.0]
+- curl          [6.0.1]
+- data.table    [1.16.4]
+- DBI           [1.2.3]
+- dbplyr        [2.5.0]
+- dplyr         [1.1.4]
+- dtplyr        [1.3.1]
+- farver        [2.1.2]
+- forcats       [1.0.0]
+- gargle        [1.5.2]
+- generics      [0.1.3]
+- ggplot2       [3.5.1]
+- googledrive   [2.1.1]
+- googlesheets4 [1.1.1]
+- gtable        [0.3.6]
+- haven         [2.5.4]
+- httr          [1.4.7]
+- ids           [1.0.1]
+- isoband       [0.2.7]
+- labeling      [0.4.3]
+- lubridate     [1.9.4]
+- modelr        [0.1.11]
+- munsell       [0.5.1]
+- openssl       [2.3.0]
+- processx      [3.8.4]
+- ps            [1.8.1]
+- purrr         [1.0.2]
+- ragg          [1.3.3]
+- RColorBrewer  [1.1-3]
+- readxl        [1.4.3]
+- rematch       [2.0.0]
+- rematch2      [2.1.2]
+- reprex        [2.1.1]
+- rstudioapi    [0.17.1]
+- rvest         [1.0.4]
+- scales        [1.3.0]
+- selectr       [0.4-2]
+- stringi       [1.8.4]
+- stringr       [1.5.1]
+- sys           [3.4.3]
+- systemfonts   [1.1.0]
+- textshaping   [0.4.1]
+- tidyr         [1.3.1]
+- tidyverse     [2.0.0]
+- timechange    [0.3.0]
+- uuid          [1.2-1]
+- viridisLite   [0.4.2]
+- xml2          [1.3.6]
+These packages will be installed into "~/work/nyc-real-est-analysis/nyc-real-est-analysis/renv/library/R-4.2/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing backports ...                      OK [installed binary and cached in 0.21s]
+- Installing generics ...                       OK [installed binary and cached in 0.2s]
+- Installing dplyr ...                          OK [installed binary and cached in 0.54s]
+- Installing purrr ...                          OK [installed binary and cached in 0.35s]
+- Installing stringi ...                        OK [installed binary and cached in 0.34s]
+- Installing stringr ...                        OK [installed binary and cached in 0.36s]
+- Installing tidyr ...                          OK [installed binary and cached in 0.57s]
+- Installing broom ...                          OK [installed binary and cached in 0.56s]
+- Installing conflicted ...                     OK [installed binary and cached in 0.31s]
+- Installing blob ...                           OK [installed binary and cached in 0.32s]
+- Installing DBI ...                            OK [installed binary and cached in 0.3s]
+- Installing dbplyr ...                         OK [installed binary and cached in 0.75s]
+- Installing data.table ...                     OK [installed binary and cached in 0.31s]
+- Installing dtplyr ...                         OK [installed binary and cached in 0.6s]
+- Installing forcats ...                        OK [installed binary and cached in 0.35s]
+- Installing gtable ...                         OK [installed binary and cached in 0.36s]
+- Installing isoband ...                        OK [installed binary and cached in 0.24s]
+- Installing farver ...                         OK [installed binary and cached in 0.24s]
+- Installing labeling ...                       OK [installed binary and cached in 0.2s]
+- Installing colorspace ...                     OK [installed binary and cached in 0.33s]
+- Installing munsell ...                        OK [installed binary and cached in 0.26s]
+- Installing RColorBrewer ...                   OK [installed binary and cached in 0.2s]
+- Installing viridisLite ...                    OK [installed binary and cached in 0.22s]
+- Installing scales ...                         OK [installed binary and cached in 0.37s]
+- Installing ggplot2 ...                        OK [installed binary and cached in 0.72s]
+- Installing curl ...                           OK [installed binary and cached in 0.23s]
+- Installing sys ...                            OK [installed binary and cached in 0.2s]
+- Installing askpass ...                        OK [installed binary and cached in 0.2s]
+- Installing openssl ...                        OK [installed binary and cached in 0.26s]
+- Installing httr ...                           OK [installed binary and cached in 0.22s]
+- Installing gargle ...                         OK [installed binary and cached in 0.39s]
+- Installing uuid ...                           OK [installed binary and cached in 0.2s]
+- Installing googledrive ...                    OK [installed binary and cached in 0.67s]
+- Installing rematch ...                        OK [installed binary and cached in 0.2s]
+- Installing cellranger ...                     OK [installed binary and cached in 0.2s]
+- Installing ids ...                            OK [installed binary and cached in 0.21s]
+- Installing rematch2 ...                       OK [installed binary and cached in 0.43s]
+- Installing googlesheets4 ...                  OK [installed binary and cached in 0.62s]
+- Installing haven ...                          OK [installed binary and cached in 0.49s]
+- Installing timechange ...                     OK [installed binary and cached in 0.2s]
+- Installing lubridate ...                      OK [installed binary and cached in 0.34s]
+- Installing modelr ...                         OK [installed binary and cached in 0.55s]
+- Installing systemfonts ...                    OK [installed binary and cached in 0.31s]
+- Installing textshaping ...                    OK [installed binary and cached in 0.31s]
+- Installing ragg ...                           OK [installed binary and cached in 0.34s]
+- Installing readxl ...                         OK [installed binary and cached in 0.22s]
+- Installing ps ...                             OK [installed binary and cached in 0.21s]
+- Installing processx ...                       OK [installed binary and cached in 0.22s]
+- Installing callr ...                          OK [installed binary and cached in 0.23s]
+- Installing rstudioapi ...                     OK [installed binary and cached in 0.21s]
+- Installing reprex ...                         OK [installed binary and cached in 0.36s]
+- Installing selectr ...                        OK [installed binary and cached in 0.36s]
+- Installing xml2 ...                           OK [installed binary and cached in 0.31s]
+- Installing rvest ...                          OK [installed binary and cached in 0.35s]
+- Installing tidyverse ...                      OK [installed binary and cached in 0.21s]
+Successfully installed 55 packages in 20 seconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>real_estate <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"realtor-data.csv"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter real estate in NYC and remove entire row with null in any column for a one-to-one relationship between x and y</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>real_estate_nyc <span class="ot">&lt;-</span> real_estate <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"New York"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(city <span class="sc">==</span> <span class="st">"New York City"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">na.omit</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 1: Data for Demonstration Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 1: Data for Demonstration Project</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>real_estate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 904,966 × 10
+   status     bed  bath acre_lot city   state zip_code house_size prev_sold_date
+   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;        
+ 1 for_sale     3     2     0.12 Adjun… Puer…      601        920 NA            
+ 2 for_sale     4     2     0.08 Adjun… Puer…      601       1527 NA            
+ 3 for_sale     2     1     0.15 Juana… Puer…      795        748 NA            
+ 4 for_sale     4     2     0.1  Ponce  Puer…      731       1800 NA            
+ 5 for_sale     6     2     0.05 Mayag… Puer…      680         NA NA            
+ 6 for_sale     4     3     0.46 San S… Puer…      612       2520 NA            
+ 7 for_sale     3     1     0.2  Ciales Puer…      639       2040 NA            
+ 8 for_sale     3     2     0.08 Ponce  Puer…      731       1050 NA            
+ 9 for_sale     2     1     0.09 Ponce  Puer…      730       1092 NA            
+10 for_sale     5     3     7.46 Las M… Puer…      670       5403 NA            
+# ℹ 904,956 more rows
+# ℹ 1 more variable: price &lt;dbl&gt;</code></pre>
 </div>
 </div>
+<p>The data used for the project is pulled kaggle where it was extracted from www.realtor.com, a real estate listing website operated by the News Corp subsidiary Move, Inc.&nbsp;and based in Santa Clara, California and one of the most visited real estate websites. The data lists details of each property including number of bedrooms and bathrooms, land size in acres, city, state, zip code, square feet of house size, previous sold date, and current listing or recently sold price.The data that was extracted and will be used in this project consists of historical real estate listing records from realtor.com</p>
+</section>
+<section id="summary-statistices-of-the-variables" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistices-of-the-variables">Summary Statistices of the variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics of Y variable</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 2: Summary statistics of Real Estate Price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 2: Summary statistics of Real Estate Price</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(real_estate_nyc<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+  319000   990000  1775000  3799384  4047500 50000000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variance and standard deviation of Y variable</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 3: Variance of Real Estate Price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 3: Variance of Real Estate Price</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(real_estate_nyc<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.6595e+13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 4: Standard deviation of Real Estate Price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 4: Standard deviation of Real Estate Price</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(real_estate_nyc<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5157034</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics of X variable</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 5: Summary statistics of Real Estate Property Size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 5: Summary statistics of Real Estate Property Size</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(real_estate_nyc<span class="sc">$</span>acre_lot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+  0.0100   0.0400   0.0600   0.3977   0.3300 625.0000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variance and standard deviation of X variable</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 6: Variance of Real Estate Property Size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 6: Variance of Real Estate Property Size</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(real_estate_nyc<span class="sc">$</span>acre_lot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 115.7352</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Table 7: Standard deviation of Real Estate Property size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Table 7: Standard deviation of Real Estate Property size</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(real_estate_nyc<span class="sc">$</span>acre_lot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.75803</code></pre>
+</div>
+</div>
+</section>
+<section id="histograms-of-the-variables" class="level2">
+<h2 class="anchored" data-anchor-id="histograms-of-the-variables">Histograms of the variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of Y variable Histogram of X variable made in Tableau</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of additional variables if needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Histogram of Prices in US DOllars</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure2.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Histogram of Property Size in Acres</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure2_zoomed.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3: Zoomed Histogram of Property Size (0 to 2 acres)</figcaption>
+</figure>
+</div>
+<p>The two variables, real estate price and property size, are continuous variables. As seen below, average price of a real estate sale in New York City is $3,799,384 and the average property size of a real estate sale is 0.3977 acres.The medians for each variable ($1,775,000 for prices and 0.06 for property size) is significantly less than their respective means meaning the distributions of each variable skews to the right as seen in the above histograms. Additionally, the high values of variance, 2.6595e+13 and 115.7352, indicates a wide spread of data points around the mean and high standard deviation, $5,157,034 and 10.75803 acres, indicates greater variability in data points, meaning they’re more spread out from the mean.</p>
+</section>
+<section id="the-relationship-between-the-variables" class="level2">
+<h2 class="anchored" data-anchor-id="the-relationship-between-the-variables">The Relationship between the variables</h2>
+<p>The covariance of -151,600.6 represents inverse relationship between property size and price in NYC. The correlation of -0.003 represents the direction and extreme weakness of the linear relationship between the two variables. ## Regression Results</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS regression model</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># stargazer table of model</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"stargazer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Downloading packages -------------------------------------------------------
+- Downloading stargazer from CRAN ...           OK [601.4 Kb in 0.99s]
+Successfully downloaded 1 package in 1.1 seconds.
+
+The following package(s) will be installed:
+- stargazer [5.2.3]
+These packages will be installed into "~/work/nyc-real-est-analysis/nyc-real-est-analysis/renv/library/R-4.2/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing stargazer ...                      OK [installed binary and cached in 0.21s]
+Successfully installed 1 package in 0.23 seconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation between variables</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>varcor <span class="ot">&lt;-</span> <span class="fu">cor</span>(real_estate_nyc<span class="sc">$</span>acre_lot, real_estate_nyc<span class="sc">$</span>price)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">#covariance between variables</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>varcov <span class="ot">&lt;-</span> <span class="fu">cov</span>(real_estate_nyc<span class="sc">$</span>acre_lot, real_estate_nyc<span class="sc">$</span>price)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation and covariance table</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>corcov <span class="ot">&lt;-</span> <span class="fu">cbind</span>(varcor, varcov)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(corcov, <span class="at">type =</span> <span class="st">"text"</span>, <span class="at">title =</span> <span class="st">"Table 8: Correlation and Covariance of Variables"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Table 8: Correlation and Covariance of Variables
+===================
+varcor    varcov   
+-------------------
+-0.003 -151,600.600
+-------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of model results with confidence intervals</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The following package(s) will be installed:
+- ggplot2 [3.5.1]
+These packages will be installed into "~/work/nyc-real-est-analysis/nyc-real-est-analysis/renv/library/R-4.2/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing ggplot2 ...                        OK [linked from cache]
+Successfully installed 1 package in 5.6 milliseconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a model of the relationship between x=acre lot size and y=price of NYC</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> acre_lot, <span class="at">data =</span> real_estate_nyc)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model, <span class="at">type =</span> <span class="st">"text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+===============================================
+                        Dependent variable:    
+                    ---------------------------
+                               price           
+-----------------------------------------------
+acre_lot                    -1,309.892         
+                            (8,253.867)        
+                                               
+Constant                 3,799,905.000***      
+                           (88,842.830)        
+                                               
+-----------------------------------------------
+Observations                   3,375           
+R2                            0.00001          
+Adjusted R2                   -0.0003          
+Residual Std. Error  5,157,779.000 (df = 3373) 
+F Statistic            0.025 (df = 1; 3373)    
+===============================================
+Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sheet 5.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4: Confidence Interval of Regression Line</figcaption>
+</figure>
+</div>
+<p>As seen with the value of R squared and the scatterplot, the relationship and correlation between acre lot size and price is very small and unexpected. This is because of the high variability of price at smaller acre lot size. It is also important to note that the p-value of 0.874 shows that there is not statistical significant between acre lot size and price of real estate in NYC adn thus the unreliability of the regression model. Below is a modified scatterplot for observation of the variability of real estate of less than or equal to one acre.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>real_estate_nyc <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(acre_lot <span class="sc">&lt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> acre_lot, <span class="at">y =</span> price<span class="sc">/</span><span class="dv">1000000</span>)) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x =</span><span class="st">"Acre Lot Size"</span>, <span class="at">y =</span><span class="st">"Price (per million $)"</span>, <span class="at">title =</span> <span class="st">"Real Estate in NYC"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Before the statistically testing and calculations were made on the data from kaggle and realtor.com, the general and more obvious assumption was the larger the property size the higher the listing price of the property would be. However, we can see now that the prices of real estate in New York City does not correlate with the size of the property. The common belief of the relationship between the two variables could not be explained in a densely populated urban area where it would have been in a rural or suburban area. If the controls of the project were accounted for in the linear relationship, it may have changed the outcome of the regression tests.</p>
+</section>
+<section id="source" class="level1">
+<h1>Source</h1>
+<p>Sakib, Ahmed Shahriar. “USA Real Estate Dataset.” Kaggle, December 5, 2023. https://www.kaggle.com/datasets/ahmedshahriarsakib/usa-real-estate-dataset.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
