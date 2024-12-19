@@ -6,7 +6,7 @@ title: "Real Estate Pricing Analysis in NYC"
 
 In this project, I am analyzing the relationship between the amount of the acres of real estate in New York City to the cost of the property. The common relationship between those two factors of most real estate in the US and around the world is positive where the larger the real estate property the higher the price. However, there may be additional variables and factors that may alter the common positive relationship. The focus of this project is to only show whether or not the prices of real estate prices increases with property size while keeping all other variables/factors as controls.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 install.packages("readr")
 install.packages("tidyverse")
 install.packages("stargazer")
