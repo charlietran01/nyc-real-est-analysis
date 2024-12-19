@@ -6,10 +6,16 @@ title: "Real Estate Pricing Analysis in NYC"
 
 In this project, I am analyzing the relationship between the amount of the acres of real estate in New York City to the cost of the property. The common relationship between those two factors of most real estate in the US and around the world is positive where the larger the real estate property the higher the price. However, there may be additional variables and factors that may alter the common positive relationship. The focus of this project is to only show whether or not the prices of real estate prices increases with property size while keeping all other variables/factors as controls.
 
-```{r,warning=FALSE,message=FALSE}
+```{r, echo=FALSE}
 install.packages("readr")
-library(readr)
 install.packages("tidyverse")
+install.packages("stargazer")
+install.packages("ggplot2")
+```
+
+```{r,warning=FALSE,message=FALSE}
+
+library(readr)
 library(tidyverse)
 
 real_estate <- read_csv("realtor-data.csv")
@@ -86,7 +92,6 @@ The covariance of -151,600.6 represents inverse relationship between property si
 # OLS regression model
 
 # stargazer table of model
-install.packages("stargazer")
 library(stargazer)
 
 # correlation between variables
@@ -102,7 +107,6 @@ corcov <- cbind(varcor, varcov)
 stargazer(corcov, type = "text", title = "Table 8: Correlation and Covariance of Variables")
 
 # plot of model results with confidence intervals
-install.packages("ggplot2")
 library(ggplot2)
 
 # create a model of the relationship between x=acre lot size and y=price of NYC
