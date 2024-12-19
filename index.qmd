@@ -8,7 +8,6 @@ In this project, I am analyzing the relationship between the amount of the acres
 
 ```{r,warning=FALSE,message=FALSE}
 
-library(readr)
 library(tidyverse)
 
 real_estate <- read_csv("realtor-data.csv")
