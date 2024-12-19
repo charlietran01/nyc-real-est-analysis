@@ -1,5 +1,6 @@
 ---
 title: "Real Estate Pricing Analysis in NYC"
+author: Charlie Tran
 ---
 
 ## Introduction
